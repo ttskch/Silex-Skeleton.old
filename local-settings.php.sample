@@ -1,0 +1,7 @@
+<?php
+define('USE_DATABASE', false);
+define('DB_DRIVER', 'pdo_mysql');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'database_name_here');
+define('DB_USER', 'user_name_here');
+define('DB_PASSWORD', 'user_password_here');
