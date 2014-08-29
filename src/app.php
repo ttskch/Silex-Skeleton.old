@@ -27,6 +27,19 @@ if (USE_DATABASE) {
     ]);
 }
 
+if (USE_EMAIL) {
+    $app->register(new Silex\Provider\SwiftmailerServiceProvider(), [
+        'swiftmailer.options' => [
+            'host' => SMTP_HOST,
+            'port' => SMTP_PORT,
+            'username' => SMTP_USER,
+            'password' => SMTP_PASSWORD,
+            'encryption' => SMTP_ENCRYPTION,
+            'auth_mode' => SMTP_AUTH_MODE,
+        ],
+    ]);
+}
+
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
     $twig->addExtension(new \Twig_Extensions_Extension_Text($app));
