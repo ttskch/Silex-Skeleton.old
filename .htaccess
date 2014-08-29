@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} index_dev\.php$
+    RewriteRule .* index_dev.php [L]
+    RewriteRule .* index.php [L]
+</IfModule>
