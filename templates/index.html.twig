@@ -1,5 +1,17 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-    Welcome to your new Silex Application!
+    <h3>Welcome to your new Silex Application!</h3>
+    <hr/>
+
+    <h4>Sample Form</h4>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

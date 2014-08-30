@@ -8,8 +8,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
-$app->get('/', function () use ($app) {
-    return $app->render('index.html.twig', array());
+$app->match('/', function (Request $request) use ($app) {
+    /** @var $form \Symfony\Component\Form\Form */
+    $form = require __DIR__ . '/forms/contact-form.php';
+
+    $form->handleRequest($request);
+    if ($form->isValid()) {
+        $app['session']->getFlashBag()->add('success', 'Form submitted.');
+        return $app->redirectByName('homepage');
+    }
+    return $app->render('index.html.twig', array(
+        'form' => $form->createView(),
+    ));
 })
 ->bind('homepage')
 ;
