@@ -1,14 +1,41 @@
 <?php
 
 use Silex\Application;
+use Silex\Application\TwigTrait;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SessionServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\UrlGeneratorServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
-$app = new Application();
+class MyApplication extends Application
+{
+    use TwigTrait;
+
+    /**
+     * @link https://github.com/silexphp/Silex/issues/678
+     */
+    public function redirectByName($name, $status = 302)
+    {
+        $parsed = explode('?', $name);
+        $name = $parsed[0];
+        $query = isset($parsed[1]) ? "?{$parsed[1]}" : '';
+        $url = $this['url_generator']->generate($name) . $query;
+
+        return $this->redirect($url, $status);
+    }
+
+    public function sendNamedFile($file, $filename = '', $filenameFallback = 'downloaded_file')
+    {
+        $response = new BinaryFileResponse($file);
+        return $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $filename, $filenameFallback);
+    }
+}
+
+$app = new MyApplication();
 $app->register(new UrlGeneratorServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
