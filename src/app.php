@@ -43,28 +43,28 @@ $app->register(new TwigServiceProvider());
 $app->register(new SessionServiceProvider());
 
 if (USE_DATABASE) {
-    $app->register(new DoctrineServiceProvider(), [
-        'db.options' => [
+    $app->register(new DoctrineServiceProvider(), array(
+        'db.options' => array(
             'driver' => DB_DRIVER,
             'host' => DB_HOST,
             'dbname' => DB_NAME,
             'user' => DB_USER,
             'password' => DB_PASSWORD,
-        ],
-    ]);
+        ),
+    ));
 }
 
 if (USE_EMAIL) {
-    $app->register(new Silex\Provider\SwiftmailerServiceProvider(), [
-        'swiftmailer.options' => [
+    $app->register(new Silex\Provider\SwiftmailerServiceProvider(), array(
+        'swiftmailer.options' => array(
             'host' => SMTP_HOST,
             'port' => SMTP_PORT,
             'username' => SMTP_USER,
             'password' => SMTP_PASSWORD,
             'encryption' => SMTP_ENCRYPTION,
             'auth_mode' => SMTP_AUTH_MODE,
-        ],
-    ]);
+        ),
+    ));
 }
 
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
