@@ -1,12 +1,10 @@
 <?php
-define('USE_DATABASE', false);
 define('DB_DRIVER', 'pdo_mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'database_name_here');
 define('DB_USER', 'user_name_here');
 define('DB_PASSWORD', 'user_password_here');
 
-define('USE_EMAIL', false);
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', '465');
 define('SMTP_USER', 'your_account@gmail.com');
