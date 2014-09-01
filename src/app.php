@@ -1,6 +1,7 @@
 <?php
 
 use Silex\Application;
+use Silex\Application\TranslationTrait;
 use Silex\Application\TwigTrait;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\FormServiceProvider;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 class MyApplication extends Application
 {
     use TwigTrait;
+    use TranslationTrait;
 
     /**
      * @link https://github.com/silexphp/Silex/issues/678
