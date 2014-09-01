@@ -48,37 +48,9 @@ $app->register(new ServiceControllerServiceProvider());
 $app->register(new TwigServiceProvider());
 $app->register(new SessionServiceProvider());
 $app->register(new FormServiceProvider());
-$app->register(new TranslationServiceProvider(), [
-    'locale_fallbacks' => array(TRANS_LANG),
-]);
-$app->register(new DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver' => DB_DRIVER,
-        'host' => DB_HOST,
-        'dbname' => DB_NAME,
-        'user' => DB_USER,
-        'password' => DB_PASSWORD,
-    ),
-));
-$app->register(new SwiftmailerServiceProvider(), array(
-    'swiftmailer.options' => array(
-        'host' => SMTP_HOST,
-        'port' => SMTP_PORT,
-        'username' => SMTP_USER,
-        'password' => SMTP_PASSWORD,
-        'encryption' => SMTP_ENCRYPTION,
-        'auth_mode' => SMTP_AUTH_MODE,
-    ),
-));
-
-$app['translator'] = $app->share($app->extend('translator', function($translator, $app) {
-    $translator->addResource(
-        'xliff',
-        __DIR__ . '/../vendor/symfony/validator/Symfony/Component/Validator/Resources/translations/validators.' . TRANS_LANG . '.xlf',
-        TRANS_LANG
-    );
-    return $translator;
-}));
+$app->register(new TranslationServiceProvider());
+$app->register(new DoctrineServiceProvider());
+$app->register(new SwiftmailerServiceProvider());
 
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...

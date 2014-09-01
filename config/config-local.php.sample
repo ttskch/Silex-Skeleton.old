@@ -1,13 +1,18 @@
 <?php
-define('DB_DRIVER', 'pdo_mysql');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'database_name_here');
-define('DB_USER', 'user_name_here');
-define('DB_PASSWORD', 'user_password_here');
+$app['config.db.options'] = array(
+    'driver' => 'pdo_mysql',
+    'host' => 'localhost',
+    'dbname' => 'dbname',
+    'user' => 'user',
+    'password' => 'password',
+    'charset' => 'utf8',
+);
 
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', '465');
-define('SMTP_USER', 'your_account@gmail.com');
-define('SMTP_PASSWORD', 'your_password_here');
-define('SMTP_ENCRYPTION', 'ssl');   // null to not use.
-define('SMTP_AUTH_MODE', 'login');  // null to not use.
+$app['config.swiftmailer.options'] = array(
+    'host' => 'smtp.gmail.com',
+    'port' => '465',
+    'username' => 'user@gmail.com',
+    'password' => 'password',
+    'encryption' => 'ssl',  // null to not use.
+    'auth_mode' => 'login', // null to not use.
+);
