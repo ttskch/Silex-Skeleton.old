@@ -13,7 +13,7 @@ $form = $app['form.factory']->createBuilder('form')
             new Assert\Email(),
         ),
     ))
-    ->add('sex', 'choice', array(
+    ->add('gender', 'choice', array(
         'required' => false,
         'empty_value' => false,
         'attr' => array(
@@ -32,6 +32,21 @@ $form = $app['form.factory']->createBuilder('form')
                 'female',
             )),
         ),
+    ))
+    ->add('favorite_colors', 'choice', array(
+        'required' => false,
+        'attr' => array(
+            'placeholder' => 'Select some colors',
+        ),
+        'choices' => array(
+            'red' => 'red',
+            'green' => 'green',
+            'blue' => 'blue',
+            'white' => 'white',
+            'black' => 'black',
+        ),
+        'expanded' => false,
+        'multiple' => true,
     ))
     ->getForm()
 ;
