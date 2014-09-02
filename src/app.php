@@ -1,6 +1,6 @@
 <?php
 
-use Provider\TwigMailerServiceProvider;
+use Quartet\Silex\Provider\TwigMailerServiceProvider;
 use Silex\Application;
 use Silex\Application\TranslationTrait;
 use Silex\Application\TwigTrait;

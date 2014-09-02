@@ -17,7 +17,7 @@ $app->match('/', function (Request $request) use ($app) {
     if ($form->isValid()) {
 
         // send email.
-        $message = $app['twig_mailer']->buildMessage('emails/contact-form.html.twig', $form);
+        $message = $app['twig_mailer']->buildMessage('emails/contact-form.txt.twig', $form);
         if ($app['twig_mailer']->send($message)) {
             $app['session']->getFlashBag()->add('success', 'Form submitted.');
             return $app->redirectByName('homepage');
