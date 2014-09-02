@@ -3,6 +3,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 $form = $app['form.factory']->createBuilder('form')
     ->add('name', 'text', array(
+        'attr' => array(
+            'autofocus' => true,
+        ),
         'constraints' => array(
             new Assert\NotBlank(),
         ),
@@ -33,20 +36,23 @@ $form = $app['form.factory']->createBuilder('form')
             )),
         ),
     ))
-    ->add('favorite_colors', 'choice', array(
+    ->add('interesting_services', 'choice', array(
         'required' => false,
         'attr' => array(
-            'placeholder' => 'Select some colors',
+            'placeholder' => 'Multiple selection',
         ),
         'choices' => array(
-            'red' => 'red',
-            'green' => 'green',
-            'blue' => 'blue',
-            'white' => 'white',
-            'black' => 'black',
+            'Service A' => 'Service A',
+            'Service B' => 'Service B',
+            'Service C' => 'Service C',
         ),
         'expanded' => false,
         'multiple' => true,
+    ))
+    ->add('message', 'textarea', array(
+        'attr' => array(
+            'rows' => 5,
+        ),
     ))
     ->getForm()
 ;

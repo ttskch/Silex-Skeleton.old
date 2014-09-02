@@ -16,3 +16,8 @@ $app->register(new MonologServiceProvider(), array(
 $app->register(new WebProfilerServiceProvider(), array(
     'profiler.cache_dir' => __DIR__.'/../var/cache/profiler',
 ));
+
+$app['twig_mailer.options'] = array(
+    'debug' => true,
+    'debug_email_destination' => $app['config.debug_email_destination'],
+);

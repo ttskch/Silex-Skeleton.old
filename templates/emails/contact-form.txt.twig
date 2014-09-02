@@ -1,0 +1,40 @@
+{#
+you can use submitted form data with:
+ - {{ vars.[field-name].label }}
+ - {{ vars.[field-name].value }}
+
+offcourse you also can access to your custom field type:
+ - {{ vars.[parent-field].[child-field].label }}
+ - {{ vars.[parent-field].[child-field].value }}
+
+and you can define message headers in template with {% block [field-name] %}:
+ - from
+ - from_name
+ - to
+ - cc
+ - bcc
+ - reply_to
+ - subject
+ - body
+#}
+
+{% block from %}{{ vars.email.value }}{% endblock %}
+{% block from_name %}{{ vars.name.value }}{% endblock %}
+{% block to %}contact@example.com{% endblock %}
+
+{% spaceless %}
+{% block subject %}[Contact] {{ vars.message.value|truncate(30) }}{% endblock %}
+{% endspaceless %}
+
+{% block body %}
+{% for var in vars %}
+----------------------------------------------------------------------
+{% if "\n" in var.value %}
+{{ var.label }}：
+{{ var.value }}
+{% else %}
+{{ var.label }}：{{ var.value|join(', ') }}
+{% endif %}
+{% endfor %}
+----------------------------------------------------------------------
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'emails/contact-form.txt.twig' %}
+
+{% block body %}
+{% spaceless %}
+    {% for var in vars %}
+        <h3>{{ var.label }}</h3>
+        <p>{{ var.value|join(', ')|nl2br }}</p>
+        <hr/>
+    {% endfor %}
+{% endspaceless %}
+{% endblock %}

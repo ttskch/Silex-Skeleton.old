@@ -1,5 +1,6 @@
 <?php
 
+use Provider\TwigMailerServiceProvider;
 use Silex\Application;
 use Silex\Application\TranslationTrait;
 use Silex\Application\TwigTrait;
@@ -51,6 +52,7 @@ $app->register(new FormServiceProvider());
 $app->register(new TranslationServiceProvider());
 $app->register(new DoctrineServiceProvider());
 $app->register(new SwiftmailerServiceProvider());
+$app->register(new TwigMailerServiceProvider());
 
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
