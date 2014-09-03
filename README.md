@@ -7,7 +7,7 @@ Fork of [silexphp/Silex-Skeleton](https://github.com/silexphp/Silex-Skeleton).
 
 ## Additional Features
 
-* Accessible with `http://hostname/project-root/` or `http://hostname/project-root/index_dev.php/`. (i.e. Don't have to set vhost on `web/`.)
+* Accessible with `http://hostname/project-root/` or `http://hostname/project-root/index_dev.php/`. (Apache only)
 * Ready to use Form, Doctrine, Swiftmailer, Session, and Translation.
 * Bootstrap3 based layout.
 * Bootstrap3 based form theme.
