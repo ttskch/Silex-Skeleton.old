@@ -39,6 +39,11 @@ class MyApplication extends Application
         $response = new BinaryFileResponse($file);
         return $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $filename, $filenameFallback);
     }
+
+    public function getBaseUrl()
+    {
+        return rtrim($this['url_generator']->getContext()->getBaseUrl(), '/') . '/';
+    }
 }
 
 $app = new MyApplication();
