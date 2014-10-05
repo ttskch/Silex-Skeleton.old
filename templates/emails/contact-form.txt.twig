@@ -1,11 +1,12 @@
 {#
-you can use submitted form data with:
- - {{ vars.[field-name].label }}
- - {{ vars.[field-name].value }}
+you can use vars or submitted form data with:
+ - {{ vars.item }}
+ - {{ form.[field-name].label }}
+ - {{ form.[field-name].value }}
 
 offcourse you also can access to your custom field type:
- - {{ vars.[parent-field].[child-field].label }}
- - {{ vars.[parent-field].[child-field].value }}
+ - {{ form.[parent-field].[child-field].label }}
+ - {{ form.[parent-field].[child-field].value }}
 
 and you can define message headers in template with {% block [field-name] %}:
  - from
@@ -18,22 +19,22 @@ and you can define message headers in template with {% block [field-name] %}:
  - body
 #}
 
-{% block from %}{{ vars.email.value }}{% endblock %}
-{% block from_name %}{{ vars.name.value }}{% endblock %}
+{% block from %}{{ form.email.value }}{% endblock %}
+{% block from_name %}{{ form.name.value }}{% endblock %}
 {% block to %}contact@example.com{% endblock %}
 
 {% spaceless %}
-{% block subject %}[Contact] {{ vars.message.value|truncate(30) }}{% endblock %}
+{% block subject %}[Contact] {{ form.message.value|truncate(30) }}{% endblock %}
 {% endspaceless %}
 
 {% block body %}
-{% for var in vars %}
+{% for item in form %}
 ----------------------------------------------------------------------
-{% if "\n" in var.value %}
-{{ var.label }}：
-{{ var.value }}
+{% if "\n" in item.value %}
+{{ item.label }}：
+{{ item.value }}
 {% else %}
-{{ var.label }}：{{ var.value|join(', ') }}
+{{ item.label }}：{{ item.value|join(', ') }}
 {% endif %}
 {% endfor %}
 ----------------------------------------------------------------------

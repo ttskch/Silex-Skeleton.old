@@ -2,33 +2,46 @@
 
 {% block subtitle %}Pagination Sample{% endblock %}
 
+{% block style_sheets %}
+    <style type="text/css">
+        a.sorted.sorted-asc:after {
+            font-family: FontAwesome;
+            content: "\f0d8";   /* fa-caret-up */
+            margin-left: 0.3em;
+        }
+        a.sorted.sorted-desc:after {
+            font-family: FontAwesome;
+            content: "\f0d7";   /* fa-caret-down */
+            margin-left: 0.3em;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <ul class="nav nav-tabs">
         <li><a href="{{ url('homepage') }}">Home</a></li>
+        <li><a href="{{ url('form') }}">Form Sample</a></li>
         <li class="active"><a>Pagination Sample</a></li>
     </ul>
 
     <h3>Pagination Sample</h3>
     <hr/>
 
-    {{ pagination|raw }}
+    {{ pagination_render(pagination) }}
 
     <table class="table table-hover">
         <thead>
         <tr>
-            {% set data = pagination.getPaginationData %}
-            {% for key in pagination.0|keys|default([]) %}
-                <th class="{% if key == sort %}sorted sorted-{{ direction.current }}{% endif %}">
-                    <a href="{{ url('pagination', {page: data.current, size: data.numItemsPerPage, sort: key, direction: direction.opposite}) }}">{{ key|humanize }}</a>
-                </th>
+            {% for key in pagination.getKeys() %}
+                <th>{{ pagination_sortable(pagination, key) }}</th>
             {% endfor %}
         </tr>
         </thead>
         <tbody>
-        {% for item in pagination %}
+        {% for row in pagination %}
             <tr>
-                {% for value in item %}
-                    <td>{{ value }}</td>
+                {% for item in row %}
+                    <td>{{ item }}</td>
                 {% endfor %}
             </tr>
         {% endfor %}

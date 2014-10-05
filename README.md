@@ -11,7 +11,8 @@ Fork of [silexphp/Silex-Skeleton](https://github.com/silexphp/Silex-Skeleton).
 * Ready to use Form, Doctrine, Swiftmailer, Session, and Translation.
 * Bootstrap3 based layout.
 * Bootstrap3 based form theme.
-* [Twig templated email sender](https://github.com/qckanemoto/TwigMailerServiceProvider).
+* [Twig templated email builder](https://github.com/qckanemoto/TwigMessageServiceProvider).
+* [Pagination service provider](https://github.com/qckanemoto/PaginationServiceProvider).
 
 ## Requirements
 

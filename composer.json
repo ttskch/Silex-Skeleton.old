@@ -25,7 +25,8 @@
         "twig/extensions": "~1.0",
         "swiftmailer/swiftmailer": "5.2.*@dev",
         "knplabs/knp-components": "1.2.*@dev",
-        "qckanemoto/twigmailer-service-provider": "@dev"
+        "qckanemoto/twig-message-service-provider": "@dev",
+        "qckanemoto/pagination-service-provider": "@dev"
     },
     "autoload": {
         "psr-0": { "": "src/" }

@@ -3,16 +3,12 @@
 {% block content %}
     <ul class="nav nav-tabs">
         <li class="active"><a>Home</a></li>
+        <li><a href="{{ url('form') }}">Form Sample</a></li>
         <li><a href="{{ url('pagination') }}">Pagination Sample</a></li>
     </ul>
 
     <h3>Welcome to your new Silex Application!</h3>
     <hr/>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <h4 class="well"><i class="fa fa-pencil-square-o"></i> Contact Form Sample</h4>
-            {{ form(form) }}
-        </div>
-    </div>
+    <p>Ready to use Form, Doctrine, Swiftmailer, Session, Translation, Pagination, Bootstrap3 based layout and form theme, FontAwesome, and Twig templated email builder.</p>
 {% endblock %}
