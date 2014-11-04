@@ -6,13 +6,11 @@
     <style type="text/css">
         a.sorted.sorted-asc:after {
             font-family: FontAwesome;
-            content: "\f0d8";   /* fa-caret-up */
-            margin-left: 0.3em;
+            content: " \f0d8";   /* fa-caret-up */
         }
         a.sorted.sorted-desc:after {
             font-family: FontAwesome;
-            content: "\f0d7";   /* fa-caret-down */
-            margin-left: 0.3em;
+            content: " \f0d7";   /* fa-caret-down */
         }
     </style>
 {% endblock %}
@@ -27,14 +25,18 @@
     <h3>Pagination Sample</h3>
     <hr/>
 
-    {{ pagination_render(pagination) }}
+    <div class="pull-left">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+    <div class="pull-right">
+        {{ knp_pagination_filter(pagination, {id: 'Id', value: 'Value'}) }}
+    </div>
 
     <table class="table table-hover">
         <thead>
         <tr>
-            {% for key in pagination.getKeys() %}
-                <th>{{ pagination_sortable(pagination, key) }}</th>
-            {% endfor %}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'id') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Value', 'value') }}</th>
         </tr>
         </thead>
         <tbody>

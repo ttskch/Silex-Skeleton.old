@@ -1,6 +1,7 @@
 <?php
 
 use Knp\Component\Pager\Paginator;
+use Quartet\Silex\Service\ArrayHandler;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -37,18 +38,29 @@ $app->match('/form', function (Request $request) use ($app) {
 ->bind('form')
 ;
 
-$app->get('/pagination', function () use ($app) {
+$app->get('/pagination', function (Request $request) use ($app) {
 
     // sample data.
-    $sampleData = array();
+    $array = array();
     for ($i = 1; $i <= 100; $i++) {
-        $sampleData[] = array(
+        $array[] = array(
             'id' => $i,
             'value' => sha1($i),
         );
     }
 
-    $pagination = $app['pagination']->paginate($sampleData);
+    $page = $request->get('page', 1);
+    $limit = $request->get('limit', 10);
+    $sort = $request->get('sort', 'id');
+    $direction = $request->get('direction') === 'desc' ? ArrayHandler::DESC : ArrayHandler::ASC;
+    $filterField = $request->get('filterField');
+    $filterValue = $request->get('filterValue');
+
+    // sort and filter array.
+    $array = $app['knp_paginator.array_handler']->filter($array, $filterField, $filterValue);
+    $array = $app['knp_paginator.array_handler']->sort($array, $sort, $direction);
+
+    $pagination = $app['knp_paginator']->paginate($array, $page, $limit);
 
     return $app['twig']->render('pagination.html.twig', array(
         'pagination' => $pagination,

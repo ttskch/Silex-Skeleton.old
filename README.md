@@ -8,11 +8,10 @@ Fork of [silexphp/Silex-Skeleton](https://github.com/silexphp/Silex-Skeleton).
 ## Additional Features
 
 * Accessible with `http://hostname/project-root/` or `http://hostname/project-root/index_dev.php/`. (Apache only)
-* Ready to use Form, Doctrine, Swiftmailer, Session, and Translation.
+* Ready to use Form, Doctrine, Swiftmailer, Session, Translation and [Pagination](https://github.com/qckanemoto/PaginationServiceProvider).
 * Bootstrap3 based layout.
 * Bootstrap3 based form theme.
 * [Twig templated email builder](https://github.com/qckanemoto/TwigMessageServiceProvider).
-* [Pagination service provider](https://github.com/qckanemoto/PaginationServiceProvider).
 
 ## Requirements
 
