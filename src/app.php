@@ -1,7 +1,7 @@
 <?php
 
-use Quartet\Silex\Provider\PaginationServiceProvider;
-use Quartet\Silex\Provider\TwigMessageServiceProvider;
+use Qck\Silex\Provider\PaginationServiceProvider;
+use Qck\Silex\Provider\TwiggedSwiftMessageServiceProvider;
 use Silex\Application;
 use Silex\Application\TranslationTrait;
 use Silex\Application\TwigTrait;
@@ -58,7 +58,7 @@ $app->register(new FormServiceProvider());
 $app->register(new TranslationServiceProvider());
 $app->register(new DoctrineServiceProvider());
 $app->register(new SwiftmailerServiceProvider());
-$app->register(new TwigMessageServiceProvider());
+$app->register(new TwiggedSwiftMessageServiceProvider());
 $app->register(new PaginationServiceProvider());
 
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {

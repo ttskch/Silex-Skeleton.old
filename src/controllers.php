@@ -1,7 +1,6 @@
 <?php
 
-use Knp\Component\Pager\Paginator;
-use Quartet\Silex\Service\ArrayHandler;
+use Cake\Utility\Hash;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,8 +24,12 @@ $app->match('/form', function (Request $request) use ($app) {
     $form->handleRequest($request);
     if ($form->isValid()) {
 
+        $array = $app['twigged_message.form_handler']->getDataArray($form);
+
         // send email.
-        $message = $app['twig_message']->buildMessage('emails/contact-form.txt.twig', array(), $form);
+        $message = $app['twigged_message']->buildMessage('emails/contact-form.txt.twig', array('form' => $array));
+//        $app['mailer']->send($message);
+
         $app['session']->getFlashBag()->add('success', 'Form submitted.');
         return $app->redirectByName('form');
     }
@@ -52,13 +55,14 @@ $app->get('/pagination', function (Request $request) use ($app) {
     $page = $request->get('page', 1);
     $limit = $request->get('limit', 10);
     $sort = $request->get('sort', 'id');
-    $direction = $request->get('direction') === 'desc' ? ArrayHandler::DESC : ArrayHandler::ASC;
+    $direction = $request->get('direction', 'asc');
     $filterField = $request->get('filterField');
     $filterValue = $request->get('filterValue');
 
-    // sort and filter array.
-    $array = $app['knp_paginator.array_handler']->filter($array, $filterField, $filterValue);
-    $array = $app['knp_paginator.array_handler']->sort($array, $sort, $direction);
+    // filter and sort array with Cake\Utility\Hash.
+    $array = Hash::extract($array, "{n}[{$filterField}=/{$filterValue}/]"); // partial match.
+//    $array = Hash::extract($array, "{n}[{$filterField}=/^{$filterValue}$/]"); // perfect match.
+    $array = Hash::sort($array, "{n}.{$sort}", $direction);
 
     $pagination = $app['knp_paginator']->paginate($array, $page, $limit);
 
