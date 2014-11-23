@@ -1,6 +1,5 @@
 # Silex-Skeleton
 
-[![Latest Stable Version](https://poser.pugx.org/qckanemoto/silex-skeleton/v/stable.svg)](https://packagist.org/packages/qckanemoto/silex-skeleton)
 [![Total Downloads](https://poser.pugx.org/qckanemoto/silex-skeleton/downloads.svg)](https://packagist.org/packages/qckanemoto/silex-skeleton)
 
 Fork of [silexphp/Silex-Skeleton](https://github.com/silexphp/Silex-Skeleton).
@@ -20,5 +19,5 @@ PHP 5.3+
 ## Usage
 
 ```bash
-$ composer create-project qckanemoto/silex-skeleton {project-name}
+$ composer create-project qckanemoto/silex-skeleton:2.*@dev {project-name}
 ```
