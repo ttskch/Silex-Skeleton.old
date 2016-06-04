@@ -1,6 +1,6 @@
-# Silex-Skeleton
+# !! No longer under maintenance !!
 
-[![Total Downloads](https://poser.pugx.org/qckanemoto/silex-skeleton/downloads.svg)](https://packagist.org/packages/qckanemoto/silex-skeleton)
+# Silex-Skeleton
 
 Fork of [silexphp/Silex-Skeleton](https://github.com/silexphp/Silex-Skeleton).
 
